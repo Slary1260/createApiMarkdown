@@ -3,7 +3,7 @@
  * @Date: 2022-10-26 18:07:11
  * @LastEditors: tj
  * @LastEditTime: 2022-11-02 12:17:38
- * @FilePath: \createApiMarkdown\markdown\markdown.go
+ * @FilePath: \github.com/Slary1260/createapimarkdown\markdown\markdown.go
  */
 package markdown
 
@@ -12,8 +12,8 @@ import (
 	"os"
 	"strings"
 
-	"createApiMarkdown/common"
-	"createApiMarkdown/document"
+	"github.com/Slary1260/createapimarkdown/common"
+	"github.com/Slary1260/createapimarkdown/document"
 
 	"github.com/sirupsen/logrus"
 )

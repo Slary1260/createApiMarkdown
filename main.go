@@ -2,15 +2,15 @@
  * @Author: tj
  * @Date: 2022-11-01 15:03:53
  * @LastEditors: tj
- * @LastEditTime: 2022-11-03 14:16:48
+ * @LastEditTime: 2022-11-03 14:48:29
  * @FilePath: \createApiMarkdown\main.go
  */
 package main
 
 import (
-	"createApiMarkdown/document"
-	"createApiMarkdown/logger"
-	"createApiMarkdown/markdown"
+	"github.com/Slary1260/createapimarkdown/document"
+	"github.com/Slary1260/createapimarkdown/logger"
+	"github.com/Slary1260/createapimarkdown/markdown"
 
 	"github.com/sirupsen/logrus"
 )

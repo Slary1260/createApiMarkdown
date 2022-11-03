@@ -3,7 +3,7 @@
  * @Date: 2022-10-10 09:28:09
  * @LastEditors: tj
  * @LastEditTime: 2022-11-02 12:18:00
- * @FilePath: \createApiMarkdown\logger\logrus.go
+ * @FilePath: \github.com/Slary1260/createapimarkdown\logger\logrus.go
  */
 package logger
 

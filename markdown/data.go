@@ -3,11 +3,11 @@
  * @Date: 2022-11-02 10:35:02
  * @LastEditors: tj
  * @LastEditTime: 2022-11-02 12:17:35
- * @FilePath: \createApiMarkdown\markdown\data.go
+ * @FilePath: \github.com/Slary1260/createapimarkdown\markdown\data.go
  */
 package markdown
 
-import "createApiMarkdown/document"
+import "github.com/Slary1260/createapimarkdown/document"
 
 type SubTable struct {
 	Title  string

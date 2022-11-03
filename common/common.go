@@ -3,7 +3,7 @@
  * @Date: 2022-10-10 09:52:23
  * @LastEditors: tj
  * @LastEditTime: 2022-11-02 12:18:14
- * @FilePath: \createApiMarkdown\common\common.go
+ * @FilePath: \github.com/Slary1260/createapimarkdown\common\common.go
  */
 package common
 

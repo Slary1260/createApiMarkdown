@@ -3,7 +3,7 @@
  * @Date: 2022-10-21 16:15:51
  * @LastEditors: tj
  * @LastEditTime: 2022-11-02 12:18:08
- * @FilePath: \createApiMarkdown\document\document.go
+ * @FilePath: \github.com/Slary1260/createapimarkdown\document\document.go
  */
 package document
 
@@ -12,7 +12,7 @@ import (
 	"reflect"
 	"strings"
 
-	"createApiMarkdown/common"
+	"github.com/Slary1260/createapimarkdown/common"
 
 	"github.com/sirupsen/logrus"
 )

@@ -3,7 +3,7 @@
  * @Date: 2022-11-02 11:04:39
  * @LastEditors: tj
  * @LastEditTime: 2022-11-02 12:18:10
- * @FilePath: \createApiMarkdown\document\option.go
+ * @FilePath: \github.com/Slary1260/createapimarkdown\document\option.go
  */
 package document
 

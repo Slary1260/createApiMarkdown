@@ -1,4 +1,4 @@
-module createApiMarkdown
+module github.com/Slary1260/createapimarkdown
 
 go 1.19
 

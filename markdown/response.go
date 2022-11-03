@@ -3,7 +3,7 @@
  * @Date: 2022-10-27 17:29:49
  * @LastEditors: tj
  * @LastEditTime: 2022-11-02 12:17:50
- * @FilePath: \createApiMarkdown\markdown\response.go
+ * @FilePath: \github.com/Slary1260/createapimarkdown\markdown\response.go
  */
 package markdown
 
@@ -12,7 +12,7 @@ import (
 	"fmt"
 	"strings"
 
-	"createApiMarkdown/document"
+	"github.com/Slary1260/createapimarkdown/document"
 )
 
 const (

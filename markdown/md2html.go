@@ -3,12 +3,12 @@
  * @Date: 2022-11-02 10:51:44
  * @LastEditors: tj
  * @LastEditTime: 2022-11-02 12:17:41
- * @FilePath: \createApiMarkdown\markdown\md2html.go
+ * @FilePath: \github.com/Slary1260/createapimarkdown\markdown\md2html.go
  */
 package markdown
 
 import (
-	"createApiMarkdown/common"
+	"github.com/Slary1260/createapimarkdown/common"
 
 	"github.com/Depado/bfchroma"
 	"github.com/russross/blackfriday/v2"

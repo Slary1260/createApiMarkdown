@@ -3,9 +3,9 @@
  * @Date: 2022-11-02 12:02:53
  * @LastEditors: tj
  * @LastEditTime: 2022-11-02 13:05:02
- * @FilePath: \createApiMarkdown\README.md
+ * @FilePath: \github.com/Slary1260/createapimarkdown\README.md
 -->
-# createApiMarkdown
+# github.com/Slary1260/createapimarkdown
 通过api的请求对象、返回对象，自动生成对应的API接口文档。 使得开发人员专注业务开发，节省了开发人员的api文档修改时间。
 
 ## 1.使用
