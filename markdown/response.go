@@ -12,7 +12,7 @@ import (
 	"fmt"
 	"strings"
 
-	"createmd/document"
+	"createApiMarkdown/document"
 )
 
 const (

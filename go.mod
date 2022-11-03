@@ -1,4 +1,4 @@
-module createmd
+module createApiMarkdown
 
 go 1.19
 

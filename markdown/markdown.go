@@ -12,8 +12,8 @@ import (
 	"os"
 	"strings"
 
-	"createmd/common"
-	"createmd/document"
+	"createApiMarkdown/common"
+	"createApiMarkdown/document"
 
 	"github.com/sirupsen/logrus"
 )

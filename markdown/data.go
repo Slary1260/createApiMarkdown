@@ -7,7 +7,7 @@
  */
 package markdown
 
-import "createmd/document"
+import "createApiMarkdown/document"
 
 type SubTable struct {
 	Title  string

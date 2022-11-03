@@ -12,7 +12,7 @@ import (
 	"reflect"
 	"strings"
 
-	"createmd/common"
+	"createApiMarkdown/common"
 
 	"github.com/sirupsen/logrus"
 )

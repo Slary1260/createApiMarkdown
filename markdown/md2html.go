@@ -8,7 +8,7 @@
 package markdown
 
 import (
-	"createmd/common"
+	"createApiMarkdown/common"
 
 	"github.com/Depado/bfchroma"
 	"github.com/russross/blackfriday/v2"
