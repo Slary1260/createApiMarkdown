@@ -2,8 +2,8 @@
  * @Author: tj
  * @Date: 2022-11-02 11:04:39
  * @LastEditors: tj
- * @LastEditTime: 2022-11-02 12:18:10
- * @FilePath: \github.com/Slary1260/createapimarkdown\document\option.go
+ * @LastEditTime: 2022-11-04 15:35:32
+ * @FilePath: \createApiMarkdown\document\option.go
  */
 package document
 
@@ -25,5 +25,17 @@ func WithVersion(version string) Option {
 func WithMdKey(key string) Option {
 	return func(d *Document) {
 		d.mdKey = key
+	}
+}
+
+func WithParseReq(isNeedParseReq bool) Option {
+	return func(d *Document) {
+		d.isNeedParseReq = isNeedParseReq
+	}
+}
+
+func WithParseRsq(isNeedParseRsq bool) Option {
+	return func(d *Document) {
+		d.isNeedParseRsq = isNeedParseRsq
 	}
 }

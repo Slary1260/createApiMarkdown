@@ -2,8 +2,8 @@
  * @Author: tj
  * @Date: 2022-10-21 16:15:51
  * @LastEditors: tj
- * @LastEditTime: 2022-11-02 12:18:08
- * @FilePath: \github.com/Slary1260/createapimarkdown\document\document.go
+ * @LastEditTime: 2022-11-04 16:16:20
+ * @FilePath: \createApiMarkdown\document\document.go
  */
 package document
 
@@ -29,11 +29,13 @@ var (
 
 func NewDocument(url string, options ...Option) *Document {
 	d := &Document{
-		Title:   "接口文档",
-		Version: "1.0",
-		Url:     url,
-		Items:   make([]*DocItem, 0, 8),
-		mdKey:   "validate",
+		Title:          "接口文档",
+		Version:        "1.0",
+		Url:            url,
+		Items:          make([]*DocItem, 0, 8),
+		mdKey:          "validate",
+		isNeedParseReq: true,
+		isNeedParseRsq: true,
 	}
 
 	for _, option := range options {
@@ -54,19 +56,31 @@ func (d *Document) AddDocItem(item *DocItem) error {
 		return os.ErrInvalid
 	}
 
-	reqFields, err := d.parseReqOrRsp(item.Request)
-	if err != nil {
-		log.Errorln("AddDocItem Request parseReqOrRsp error:", err)
-		return err
+	if d.isNeedParseReq {
+		reqFields, err := d.parseReqOrRsp(item.Request)
+		if err != nil {
+			log.Errorln("AddDocItem Request parseReqOrRsp error:", err)
+			return err
+		}
+		item.ReqFields = reqFields
+	} else {
+		if len(item.ReqFields) == 0 {
+			return os.ErrInvalid
+		}
 	}
-	item.ReqFields = reqFields
 
-	rspFields, err := d.parseReqOrRsp(item.Response)
-	if err != nil {
-		log.Errorln("AddDocItem Response parseReqOrRsp error:", err)
-		return err
+	if d.isNeedParseRsq {
+		rspFields, err := d.parseReqOrRsp(item.Response)
+		if err != nil {
+			log.Errorln("AddDocItem Response parseReqOrRsp error:", err)
+			return err
+		}
+		item.RspFields = rspFields
+	} else {
+		if len(item.RspFields) == 0 {
+			return os.ErrInvalid
+		}
 	}
-	item.RspFields = rspFields
 
 	d.Items = append(d.Items, item)
 

@@ -2,8 +2,8 @@
  * @Author: tj
  * @Date: 2022-11-02 10:05:45
  * @LastEditors: tj
- * @LastEditTime: 2022-11-02 12:18:04
- * @FilePath: \github.com/Slary1260/createapimarkdown\document\data.go
+ * @LastEditTime: 2022-11-04 15:34:20
+ * @FilePath: \createApiMarkdown\document\data.go
  */
 package document
 
@@ -32,5 +32,7 @@ type Document struct {
 	Url     string     `json:"Url"`     // Url
 	Items   []*DocItem `json:"items"`   // 接口列表
 
-	mdKey string
+	mdKey          string
+	isNeedParseReq bool
+	isNeedParseRsq bool
 }
