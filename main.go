@@ -2,7 +2,7 @@
  * @Author: tj
  * @Date: 2022-11-01 15:03:53
  * @LastEditors: tj
- * @LastEditTime: 2022-11-03 14:48:29
+ * @LastEditTime: 2022-11-04 16:48:51
  * @FilePath: \createApiMarkdown\main.go
  */
 package main
@@ -20,9 +20,21 @@ func main() {
 	logger.DefaultLogrusLogger()
 	logrus.SetLevel(logrus.InfoLevel)
 
-	doc := document.NewDocument("api/")
+	doc := document.NewDocument("api/", document.WithParseReq(false), document.WithParseRsq(false))
 
-	err := doc.AddDocItem(item)
+	reqFields, err := doc.ParseReqOrRsp(req)
+	if err != nil {
+		log.Panic(err)
+	}
+
+	rspFields, err := doc.ParseReqOrRsp(rsp)
+	if err != nil {
+		log.Panic(err)
+	}
+
+	item.ReqFields = reqFields
+	item.RspFields = rspFields
+	err = doc.AddDocItem(item)
 	if err != nil {
 		log.Panic(err)
 	}
@@ -49,34 +61,36 @@ var (
 		EndTime:    "2022-11-1 17:27:44",
 	}
 
+	rsp = &Result{Data: &ActivityListResponse{
+		TotalCount: 100,
+		Counts:     []int64{123, 456, 789},
+		Names:      []string{"123", "456", "789"},
+		Details: []*ActivityListDetail{
+			{
+				Aid:       1,
+				TitleName: []string{"手机"},
+				StartTime: "2022-11-1 17:31:10",
+				EndTime:   "2022-11-1 17:31:17",
+				AiNum:     0,
+				Status:    1,
+			},
+		},
+		Goods: []*GoodName{
+			{
+				Gid:        1,
+				GoodsName:  "GoodsName1",
+				GoodsPrice: 125.5,
+			},
+		},
+	}}
+
 	item = &document.DocItem{
-		Title:   "获取列表",
-		Url:     "activity/list",
-		Method:  "POST",
-		Request: req,
-		Response: &Result{Data: &ActivityListResponse{
-			TotalCount: 100,
-			Counts:     []int64{123, 456, 789},
-			Names:      []string{"123", "456", "789"},
-			Details: []*ActivityListDetail{
-				{
-					Aid:       1,
-					TitleName: []string{"手机"},
-					StartTime: "2022-11-1 17:31:10",
-					EndTime:   "2022-11-1 17:31:17",
-					AiNum:     0,
-					Status:    1,
-				},
-			},
-			Goods: []*GoodName{
-				{
-					Gid:        1,
-					GoodsName:  "GoodsName1",
-					GoodsPrice: 125.5,
-				},
-			},
-		}},
-		Author: "1260",
+		Title:    "获取列表",
+		Url:      "activity/list",
+		Method:   "POST",
+		Request:  req,
+		Response: rsp,
+		Author:   "1260",
 	}
 
 	log = logrus.WithFields(logrus.Fields{

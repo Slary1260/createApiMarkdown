@@ -2,8 +2,8 @@
  * @Author: tj
  * @Date: 2022-11-02 12:02:53
  * @LastEditors: tj
- * @LastEditTime: 2022-11-02 13:05:02
- * @FilePath: \github.com/Slary1260/createapimarkdown\README.md
+ * @LastEditTime: 2022-11-04 16:52:46
+ * @FilePath: \createApiMarkdown\README.md
 -->
 # github.com/Slary1260/createapimarkdown
 通过api的请求对象、返回对象，自动生成对应的API接口文档。 使得开发人员专注业务开发，节省了开发人员的api文档修改时间。
@@ -66,6 +66,28 @@ type ActivityListDetail struct {
 ### 2.4.支持markdown转html
 ```
 md := markdown.New(doc, markdown.WithMd2Html(true))
+```
+
+### 2.5.支持传入解析好的API结构体数据，避免再次解析结构体
+```
+doc := document.NewDocument("api/", document.WithParseReq(false), document.WithParseRsq(false))
+
+reqFields, err := doc.ParseReqOrRsp(req)
+if err != nil {
+    log.Panic(err)
+}
+
+rspFields, err := doc.ParseReqOrRsp(rsp)
+if err != nil {
+    log.Panic(err)
+}
+
+item.ReqFields = reqFields
+item.RspFields = rspFields
+err = doc.AddDocItem(item)
+if err != nil {
+    log.Panic(err)
+}
 ```
 
 ## 3.TODO

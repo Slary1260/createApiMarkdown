@@ -2,7 +2,7 @@
  * @Author: tj
  * @Date: 2022-10-21 16:15:51
  * @LastEditors: tj
- * @LastEditTime: 2022-11-04 16:16:20
+ * @LastEditTime: 2022-11-04 16:42:40
  * @FilePath: \createApiMarkdown\document\document.go
  */
 package document
@@ -57,9 +57,9 @@ func (d *Document) AddDocItem(item *DocItem) error {
 	}
 
 	if d.isNeedParseReq {
-		reqFields, err := d.parseReqOrRsp(item.Request)
+		reqFields, err := d.ParseReqOrRsp(item.Request)
 		if err != nil {
-			log.Errorln("AddDocItem Request parseReqOrRsp error:", err)
+			log.Errorln("AddDocItem Request ParseReqOrRsp error:", err)
 			return err
 		}
 		item.ReqFields = reqFields
@@ -70,9 +70,9 @@ func (d *Document) AddDocItem(item *DocItem) error {
 	}
 
 	if d.isNeedParseRsq {
-		rspFields, err := d.parseReqOrRsp(item.Response)
+		rspFields, err := d.ParseReqOrRsp(item.Response)
 		if err != nil {
-			log.Errorln("AddDocItem Response parseReqOrRsp error:", err)
+			log.Errorln("AddDocItem Response ParseReqOrRsp error:", err)
 			return err
 		}
 		item.RspFields = rspFields
@@ -88,7 +88,7 @@ func (d *Document) AddDocItem(item *DocItem) error {
 }
 
 // 解析接口的请求对象或者返回对象
-func (d *Document) parseReqOrRsp(param interface{}) ([]*Field, error) {
+func (d *Document) ParseReqOrRsp(param interface{}) ([]*Field, error) {
 	if param == nil {
 		return nil, nil
 	}
@@ -98,33 +98,37 @@ func (d *Document) parseReqOrRsp(param interface{}) ([]*Field, error) {
 		return nil, err
 	}
 
+	if value.Kind() == reflect.Invalid {
+		return nil, os.ErrInvalid
+	}
+
 	return d.getFields(value)
 }
 
-func (d *Document) checkKind(param interface{}) (*reflect.Value, error) {
+func (d *Document) checkKind(param interface{}) (reflect.Value, error) {
 	value := reflect.ValueOf(param)
 	if !value.IsValid() {
-		return nil, nil
+		return reflect.Value{}, nil
 	}
 
 	switch value.Kind() {
 	case reflect.Slice:
 		if value.Len() <= 0 {
-			return nil, nil
+			return reflect.Value{}, nil
 		}
 		value = value.Index(0)
 
 		// []*data
 		if value.Kind() == reflect.Ptr {
 			if value.IsNil() {
-				return nil, nil
+				return reflect.Value{}, nil
 			}
 			value = value.Elem()
 		}
 
 	case reflect.Ptr:
 		if value.IsNil() {
-			return nil, nil
+			return reflect.Value{}, nil
 		}
 		value = value.Elem()
 
@@ -132,13 +136,13 @@ func (d *Document) checkKind(param interface{}) (*reflect.Value, error) {
 		break
 
 	default:
-		return nil, os.ErrInvalid
+		return reflect.Value{}, os.ErrInvalid
 	}
 
-	return &value, nil
+	return value, nil
 }
 
-func (d *Document) getFields(value *reflect.Value) ([]*Field, error) {
+func (d *Document) getFields(value reflect.Value) ([]*Field, error) {
 	valueType := value.Type()
 	fields := make([]*Field, 0)
 	// 遍历结构体所有成员
@@ -149,7 +153,7 @@ func (d *Document) getFields(value *reflect.Value) ([]*Field, error) {
 		structField := valueType.Field(i)
 		// 内嵌结构体
 		if structField.Anonymous {
-			subFields, err := d.parseReqOrRsp(fieldValue.Interface())
+			subFields, err := d.ParseReqOrRsp(fieldValue.Interface())
 			if err != nil {
 				return nil, err
 			}
@@ -182,7 +186,7 @@ func (d *Document) getFields(value *reflect.Value) ([]*Field, error) {
 func (d *Document) getStructField(fieldValue reflect.Value, field *Field) error {
 	switch field.Kind {
 	case reflect.Interface.String(), reflect.Struct.String():
-		subFields, err := d.parseReqOrRsp(fieldValue.Interface())
+		subFields, err := d.ParseReqOrRsp(fieldValue.Interface())
 		if err != nil {
 			return err
 		}
@@ -196,7 +200,7 @@ func (d *Document) getStructField(fieldValue reflect.Value, field *Field) error 
 
 		subValue := fieldValue.Elem()
 
-		subFields, err := d.parseReqOrRsp(subValue.Interface())
+		subFields, err := d.ParseReqOrRsp(subValue.Interface())
 		if err != nil {
 			return err
 		}
@@ -240,7 +244,7 @@ func (d *Document) getStructField(fieldValue reflect.Value, field *Field) error 
 			field.Kind += reflect.Float32.String()
 		default: //结构体
 			field.Kind += reflect.Struct.String()
-			subFields, err := d.parseReqOrRsp(fieldValue.Interface())
+			subFields, err := d.ParseReqOrRsp(fieldValue.Interface())
 			if err != nil {
 				return err
 			}
