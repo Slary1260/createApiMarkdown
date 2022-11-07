@@ -2,13 +2,14 @@
  * @Author: tj
  * @Date: 2022-11-01 15:03:53
  * @LastEditors: tj
- * @LastEditTime: 2022-11-04 16:48:51
+ * @LastEditTime: 2022-11-07 14:20:03
  * @FilePath: \createApiMarkdown\main.go
  */
 package main
 
 import (
 	"github.com/Slary1260/createapimarkdown/document"
+	"github.com/Slary1260/createapimarkdown/gindemo"
 	"github.com/Slary1260/createapimarkdown/logger"
 	"github.com/Slary1260/createapimarkdown/markdown"
 
@@ -16,6 +17,11 @@ import (
 )
 
 func main() {
+	gindemo.GinDemo()
+}
+
+// 手动添加API对象，生成API接口文档
+func normal() {
 	// start log
 	logger.DefaultLogrusLogger()
 	logrus.SetLevel(logrus.InfoLevel)

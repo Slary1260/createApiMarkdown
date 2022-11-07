@@ -2,7 +2,7 @@
  * @Author: tj
  * @Date: 2022-11-02 12:02:53
  * @LastEditors: tj
- * @LastEditTime: 2022-11-04 16:52:46
+ * @LastEditTime: 2022-11-07 14:34:13
  * @FilePath: \createApiMarkdown\README.md
 -->
 # github.com/Slary1260/createapimarkdown
@@ -90,8 +90,8 @@ if err != nil {
 }
 ```
 
-## 3.TODO
-自动获取gin路由生成接口文档
+## 3.gin自动注册路由
+根据gin自动注册的路由参数，自动生成API接口文档
 
 ## 4.参考项目
 https://github.com/w3liu/gendoc 
