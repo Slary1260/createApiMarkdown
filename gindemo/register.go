@@ -2,7 +2,7 @@
  * @Author: tj
  * @Date: 2022-11-02 17:40:48
  * @LastEditors: tj
- * @LastEditTime: 2022-11-07 14:18:34
+ * @LastEditTime: 2022-11-07 14:54:08
  * @FilePath: \createApiMarkdown\gindemo\register.go
  */
 package gindemo
@@ -48,7 +48,7 @@ func register(controller interface{}) error {
 		}
 
 		method := v.Method(i)
-		request := getRequest(method)
+		request, subRequestMap := getRequest(method)
 		response, subResponse := getResponse(method)
 
 		route := Route{
@@ -56,6 +56,7 @@ func register(controller interface{}) error {
 			HttpMethod:  httpMethod,
 			Method:      method,
 			Request:     request,
+			SubRequest:  subRequestMap,
 			Response:    response,
 			SubResponse: subResponse,
 		}
@@ -86,8 +87,9 @@ func checkMethod(action string) string {
 	return ""
 }
 
-func getRequest(method reflect.Value) interface{} {
+func getRequest(method reflect.Value) (interface{}, interface{}) {
 	var request interface{} = nil
+	subRequestMap := make(map[int]interface{}, 0)
 
 	for j := 0; j < method.Type().NumIn(); j++ {
 		reqType := method.Type().In(j)
@@ -97,15 +99,50 @@ func getRequest(method reflect.Value) interface{} {
 		}
 
 		if reqType.Kind() == reflect.Ptr && reqType.Elem().Kind() == reflect.Struct {
-			request = reflect.New(reqType.Elem()).Interface()
+			reqValue := reflect.New(reqType.Elem())
+
+			for i := 0; i < reqType.Elem().NumField(); i++ {
+				fieldValue := reqType.Elem().Field(i)
+
+				switch fieldValue.Type.Kind() {
+				case reflect.Slice:
+					// silce with elem
+					slice := reflect.MakeSlice(fieldValue.Type, 0, 4)
+					subResponseValue := reflect.New(fieldValue.Type.Elem())
+					slice = reflect.Append(slice, reflect.ValueOf(subResponseValue.Elem().Interface()))
+					subRequestMap[i] = slice.Interface()
+
+				case reflect.Struct:
+					subResponseValue := reflect.New(fieldValue.Type)
+					subRequestMap[i] = subResponseValue.Interface()
+				}
+			}
+			request = reqValue.Interface()
 		}
 
 		if reqType.Kind() == reflect.Struct {
 			request = reflect.New(reqType).Interface()
+
+			for i := 0; i < reqType.NumField(); i++ {
+				fieldValue := reqType.Field(i)
+
+				switch fieldValue.Type.Kind() {
+				case reflect.Slice:
+					// slice elem
+					subResponseValue := reflect.New(fieldValue.Type.Elem())
+					subRequestMap[i] = subResponseValue.Interface()
+
+					// slice
+					subRequestMap[i] = reflect.New(fieldValue.Type).Interface()
+				case reflect.Struct:
+					subResponseValue := reflect.New(fieldValue.Type)
+					subRequestMap[i] = subResponseValue.Interface()
+				}
+			}
 		}
 	}
 
-	return request
+	return request, subRequestMap
 }
 
 func getResponse(method reflect.Value) (interface{}, interface{}) {

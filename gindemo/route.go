@@ -2,7 +2,7 @@
  * @Author: tj
  * @Date: 2022-11-03 10:30:39
  * @LastEditors: tj
- * @LastEditTime: 2022-11-07 14:17:33
+ * @LastEditTime: 2022-11-07 14:43:53
  * @FilePath: \createApiMarkdown\gindemo\route.go
  */
 package gindemo
@@ -25,6 +25,7 @@ type Route struct {
 	HttpMethod  string
 	Method      reflect.Value
 	Request     interface{}
+	SubRequest  interface{}
 	Response    interface{}
 	SubResponse interface{}
 }

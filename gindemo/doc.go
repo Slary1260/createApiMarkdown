@@ -2,7 +2,7 @@
  * @Author: tj
  * @Date: 2022-11-03 18:59:04
  * @LastEditors: tj
- * @LastEditTime: 2022-11-07 14:30:43
+ * @LastEditTime: 2022-11-07 14:53:07
  * @FilePath: \createApiMarkdown\gindemo\doc.go
  */
 package gindemo
@@ -25,6 +25,26 @@ func getDoc() (*document.Document, error) {
 			Author:   "",
 			Request:  v.Request,
 			Response: &Result{Data: v.Response},
+		}
+
+		if v.SubRequest != nil {
+			reqType := reflect.TypeOf(v.Request)
+			reqValue := reflect.ValueOf(v.Request).Elem()
+
+			if reqType.Kind() == reflect.Ptr {
+				reqType = reqType.Elem()
+			}
+
+			for key, detail := range v.SubRequest.(map[int]interface{}) {
+				for i := 0; i < reqType.NumField(); i++ {
+					fieldType := reqType.Field(i)
+
+					if key == i && fieldType.Type == reflect.TypeOf(detail) {
+						// rspValue.FieldByName(fieldType.Name).Set(reflect.ValueOf(detail))
+						reqValue.FieldByName(fieldType.Name).Set(reflect.ValueOf(detail).Convert(fieldType.Type))
+					}
+				}
+			}
 		}
 
 		if v.SubResponse != nil {
