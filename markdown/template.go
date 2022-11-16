@@ -2,19 +2,19 @@
  * @Author: tj
  * @Date: 2022-10-26 18:07:40
  * @LastEditors: tj
- * @LastEditTime: 2022-11-02 12:17:54
- * @FilePath: \github.com/Slary1260/createapimarkdown\markdown\template.go
+ * @LastEditTime: 2022-11-16 10:49:46
+ * @FilePath: \createApiMarkdown\markdown\template.go
  */
 package markdown
 
 const TplPage = `# {title}
 > 版本号：{version}<br>
-> BaseUrl: {Url}
+> BaseUrl: {url}<br>
+> ApiList: {apiList}<br>
 {body}
 `
 
 const TplBody = `
-
 ## {id}. {name}
 > 作者：{author}
 

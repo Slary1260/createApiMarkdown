@@ -2,8 +2,8 @@
  * @Author: tj
  * @Date: 2022-10-26 18:07:11
  * @LastEditors: tj
- * @LastEditTime: 2022-11-02 12:17:38
- * @FilePath: \github.com/Slary1260/createapimarkdown\markdown\markdown.go
+ * @LastEditTime: 2022-11-16 11:01:08
+ * @FilePath: \createApiMarkdown\markdown\markdown.go
  */
 package markdown
 
@@ -69,8 +69,9 @@ func (m *Markdown) renderPage(v *document.Document) (string, error) {
 	ts := TplPage
 	ts = strings.Replace(ts, "{title}", v.Title, 1)
 	ts = strings.Replace(ts, "{version}", v.Version, 1)
-	ts = strings.Replace(ts, "{Url}", v.Url, 1)
+	ts = strings.Replace(ts, "{url}", v.Url, 1)
 
+	apiList := "\n"
 	body := ""
 	for index, item := range v.GetItems() {
 		tpl, err := m.renderBody(index+1, item)
@@ -78,9 +79,18 @@ func (m *Markdown) renderPage(v *document.Document) (string, error) {
 			return "", err
 		}
 
+		if index != len(v.GetItems())-1 {
+			apiList += fmt.Sprintf("[%d.%s](#%d.%s)", index+1, item.Title, index+1, item.Title) + "&emsp;"
+			if index != 0 && index%4 == 0 {
+				apiList += "\n"
+			}
+		} else {
+			apiList += fmt.Sprintf("[%d.%s](#%d.%s)", index+1, item.Title, index+1, item.Title)
+		}
 		body = fmt.Sprintf("%s%s", body, tpl)
 	}
 
+	ts = strings.Replace(ts, "{apiList}", apiList, 1)
 	ts = strings.Replace(ts, "{body}", body, 1)
 
 	return ts, nil
@@ -91,8 +101,10 @@ func (m *Markdown) renderBody(index int, v *document.DocItem) (string, error) {
 	m.subRespList = make([]SubTable, 0)
 	m.index = index
 
-	ts := TplBody
-	ts = strings.Replace(ts, "{id}", fmt.Sprintf("%v", index), 1)
+	ts := ""
+	ts = fmt.Sprintf("\n<a id=\"%d.%s\"></a>", index, v.Title)
+	ts += TplBody
+	ts = strings.Replace(ts, "{id}", fmt.Sprintf("%d", index), 1)
 	ts = strings.Replace(ts, "{name}", v.Title, 1)
 	ts = strings.Replace(ts, "{author}", v.Author, 1)
 	ts = strings.Replace(ts, "{method}", string(v.Method), 1)
