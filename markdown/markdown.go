@@ -2,7 +2,7 @@
  * @Author: tj
  * @Date: 2022-10-26 18:07:11
  * @LastEditors: tj
- * @LastEditTime: 2022-11-16 11:19:03
+ * @LastEditTime: 2022-11-16 11:39:32
  * @FilePath: \createApiMarkdown\markdown\markdown.go
  */
 package markdown
@@ -74,7 +74,7 @@ func (m *Markdown) renderPage(v *document.Document) (string, error) {
 	ts = strings.Replace(ts, "{version}", v.Version, 1)
 	ts = strings.Replace(ts, "{url}", v.Url, 1)
 
-	apiList := "\n"
+	apiList := ""
 	body := ""
 	for index, item := range v.GetItems() {
 		tpl, err := m.renderBody(index+1, item)
@@ -82,11 +82,12 @@ func (m *Markdown) renderPage(v *document.Document) (string, error) {
 			return "", err
 		}
 
+		if index%4 == 0 {
+			apiList += "\n"
+		}
+
 		if index != len(v.GetItems())-1 {
 			apiList += fmt.Sprintf("[%d.%s](#%d.%s)", index+1, item.Title, index+1, item.Title) + "&emsp;"
-			if index != 0 && index%4 == 0 {
-				apiList += "\n"
-			}
 		} else {
 			apiList += fmt.Sprintf("[%d.%s](#%d.%s)", index+1, item.Title, index+1, item.Title)
 		}
