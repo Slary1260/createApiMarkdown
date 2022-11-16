@@ -2,7 +2,7 @@
  * @Author: tj
  * @Date: 2022-11-03 18:59:04
  * @LastEditors: tj
- * @LastEditTime: 2022-11-16 10:41:48
+ * @LastEditTime: 2022-11-16 11:29:14
  * @FilePath: \createApiMarkdown\gindemo\doc.go
  */
 package gindemo
@@ -42,15 +42,18 @@ func getDoc() (*document.Document, error) {
 
 	for _, v := range Routes {
 		item := &document.DocItem{
-			Title:    v.Title,
-			Url:      v.Path,
-			Method:   v.HttpMethod,
-			Author:   v.Author,
-			Request:  v.Request,
-			Response: &Result{Data: v.Response},
+			Title:   v.Title,
+			Url:     v.Path,
+			Method:  v.HttpMethod,
+			Author:  v.Author,
+			Request: v.Request,
 		}
 
-		if v.HttpMethod != http.MethodGet && v.SubRequest != nil {
+		if item.Method == http.MethodPost {
+			item.Response = &Result{Data: v.Response}
+		}
+
+		if v.SubRequest != nil {
 			reqType := reflect.TypeOf(v.Request)
 			reqValue := reflect.ValueOf(v.Request).Elem()
 

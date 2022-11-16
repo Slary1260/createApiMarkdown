@@ -2,7 +2,7 @@
  * @Author: tj
  * @Date: 2022-10-26 18:07:11
  * @LastEditors: tj
- * @LastEditTime: 2022-11-16 11:01:08
+ * @LastEditTime: 2022-11-16 11:19:03
  * @FilePath: \createApiMarkdown\markdown\markdown.go
  */
 package markdown
@@ -26,10 +26,13 @@ var (
 
 func New(doc *document.Document, options ...Option) *Markdown {
 	m := &Markdown{
-		doc:         doc,
-		index:       0,
-		subReqList:  make([]SubTable, 0),
-		subRespList: make([]SubTable, 0),
+		doc:            doc,
+		index:          0,
+		subReqList:     make([]SubTable, 0),
+		subSubReqList:  make([]SubTable, 0),
+		subRespList:    make([]SubTable, 0),
+		subSubRespList: make([]SubTable, 0),
+		is2html:        false,
 	}
 
 	for _, option := range options {
@@ -98,7 +101,9 @@ func (m *Markdown) renderPage(v *document.Document) (string, error) {
 
 func (m *Markdown) renderBody(index int, v *document.DocItem) (string, error) {
 	m.subReqList = make([]SubTable, 0)
+	m.subSubReqList = make([]SubTable, 0)
 	m.subRespList = make([]SubTable, 0)
+	m.subSubRespList = make([]SubTable, 0)
 	m.index = index
 
 	ts := ""

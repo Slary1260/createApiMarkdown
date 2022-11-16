@@ -210,25 +210,6 @@
 |data   |interface        |    |
 |msg   |string        |错误信息    |
 
-<a id="rsp-5.1.details"></a> 
-##### rsp-details 
- 
-|字段      |字段类型       |字段说明    |
-|:--:|:--:|:--:|
-|aid   |uint64        |活动id    |
-|titleName   |string        |活动标题    |
-|startTime   |string        |活动开始时间    |
-|endTime   |string        |活动结束时间    |
-|status   |uint8        |活动状态    |
- 
-<a id="rsp-5.1.goods"></a> 
-##### rsp-goods 
- 
-|字段      |字段类型       |字段说明    |
-|:--:|:--:|:--:|
-|gid   |uint64        |商品id    |
-|goodsName   |string        |商品名称    |
- 
 
 
 <a id="6.api-gethtml"></a>
@@ -243,39 +224,8 @@
 
 
 ### 返回结果
-```json
- {
-	"code": 0,
-	"data": null,
-	"msg": ""
-} 
-```
+
 ### 返回参数
 
-|字段      |字段类型       |字段说明    |
-|:--:|:--:|:--:|
-|code   |int        |0-成功 1-失败    |
-|data   |interface        |    |
-|msg   |string        |错误信息    |
-
-<a id="rsp-6.1.details"></a> 
-##### rsp-details 
- 
-|字段      |字段类型       |字段说明    |
-|:--:|:--:|:--:|
-|aid   |uint64        |活动id    |
-|titleName   |string        |活动标题    |
-|startTime   |string        |活动开始时间    |
-|endTime   |string        |活动结束时间    |
-|status   |uint8        |活动状态    |
- 
-<a id="rsp-6.1.goods"></a> 
-##### rsp-goods 
- 
-|字段      |字段类型       |字段说明    |
-|:--:|:--:|:--:|
-|gid   |uint64        |商品id    |
-|goodsName   |string        |商品名称    |
- 
 
 

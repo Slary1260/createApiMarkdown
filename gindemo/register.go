@@ -2,7 +2,7 @@
  * @Author: tj
  * @Date: 2022-11-02 17:40:48
  * @LastEditors: tj
- * @LastEditTime: 2022-11-16 09:49:52
+ * @LastEditTime: 2022-11-16 11:10:06
  * @FilePath: \createApiMarkdown\gindemo\register.go
  */
 package gindemo
@@ -142,6 +142,10 @@ func getRequest(method reflect.Value) (interface{}, interface{}) {
 				}
 			}
 		}
+	}
+
+	if len(subRequestMap) == 0 {
+		return request, nil
 	}
 
 	return request, subRequestMap
