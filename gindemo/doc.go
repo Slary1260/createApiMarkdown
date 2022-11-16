@@ -2,12 +2,13 @@
  * @Author: tj
  * @Date: 2022-11-03 18:59:04
  * @LastEditors: tj
- * @LastEditTime: 2022-11-16 09:48:59
+ * @LastEditTime: 2022-11-16 10:20:25
  * @FilePath: \createApiMarkdown\gindemo\doc.go
  */
 package gindemo
 
 import (
+	"net/http"
 	"reflect"
 
 	"github.com/Slary1260/createapimarkdown/document"
@@ -49,7 +50,7 @@ func getDoc() (*document.Document, error) {
 			Response: &Result{Data: v.Response},
 		}
 
-		if v.SubRequest != nil {
+		if v.HttpMethod != http.MethodGet && v.SubRequest != nil {
 			reqType := reflect.TypeOf(v.Request)
 			reqValue := reflect.ValueOf(v.Request).Elem()
 
