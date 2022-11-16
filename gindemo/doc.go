@@ -2,7 +2,7 @@
  * @Author: tj
  * @Date: 2022-11-03 18:59:04
  * @LastEditors: tj
- * @LastEditTime: 2022-11-16 10:20:25
+ * @LastEditTime: 2022-11-16 10:41:48
  * @FilePath: \createApiMarkdown\gindemo\doc.go
  */
 package gindemo
@@ -42,10 +42,10 @@ func getDoc() (*document.Document, error) {
 
 	for _, v := range Routes {
 		item := &document.DocItem{
-			Title:    "",
+			Title:    v.Title,
 			Url:      v.Path,
 			Method:   v.HttpMethod,
-			Author:   "",
+			Author:   v.Author,
 			Request:  v.Request,
 			Response: &Result{Data: v.Response},
 		}
