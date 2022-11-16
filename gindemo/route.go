@@ -2,7 +2,7 @@
  * @Author: tj
  * @Date: 2022-11-03 10:30:39
  * @LastEditors: tj
- * @LastEditTime: 2022-11-07 14:43:53
+ * @LastEditTime: 2022-11-16 09:49:32
  * @FilePath: \createApiMarkdown\gindemo\route.go
  */
 package gindemo
@@ -21,6 +21,8 @@ var (
 )
 
 type Route struct {
+	Title       string
+	Author      string
 	Path        string
 	HttpMethod  string
 	Method      reflect.Value
@@ -51,8 +53,15 @@ func initRouter(e *gin.Engine) error {
 		}
 	}
 
-	return createApiMd()
-	// return nil
+	err := createApiMd()
+	if err != nil {
+		log.Errorln("initRouter createApiMd error:", err)
+		return err
+	}
+
+	e.LoadHTMLGlob("./doc.html")
+
+	return nil
 }
 
 func match(path string, r Route) gin.HandlerFunc {

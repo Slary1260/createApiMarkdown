@@ -2,7 +2,7 @@
  * @Author: tj
  * @Date: 2022-11-03 18:59:04
  * @LastEditors: tj
- * @LastEditTime: 2022-11-07 14:53:07
+ * @LastEditTime: 2022-11-16 09:48:59
  * @FilePath: \createApiMarkdown\gindemo\doc.go
  */
 package gindemo
@@ -13,6 +13,28 @@ import (
 	"github.com/Slary1260/createapimarkdown/document"
 	"github.com/Slary1260/createapimarkdown/markdown"
 )
+
+const (
+	apiDocFile string = "doc.md"
+	apiDocHtml string = "doc.html"
+)
+
+func createApiMd() error {
+	doc, err := getDoc()
+	if err != nil {
+		log.Errorln("createApiMd getDoc error:", err)
+		return err
+	}
+
+	md := markdown.New(doc, markdown.WithMd2Html(true))
+	err = md.Generate(apiDocFile)
+	if err != nil {
+		log.Errorln("createApiMd Generate error:", err)
+		return err
+	}
+
+	return nil
+}
 
 func getDoc() (*document.Document, error) {
 	doc := document.NewDocument("")
@@ -74,21 +96,4 @@ func getDoc() (*document.Document, error) {
 	}
 
 	return doc, nil
-}
-
-func createApiMd() error {
-	doc, err := getDoc()
-	if err != nil {
-		log.Errorln("createApiMd getDoc error:", err)
-		return err
-	}
-
-	md := markdown.New(doc, markdown.WithMd2Html(true))
-	err = md.Generate("doc.md")
-	if err != nil {
-		log.Errorln("createApiMd Generate error:", err)
-		return err
-	}
-
-	return nil
 }

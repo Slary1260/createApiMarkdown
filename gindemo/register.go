@@ -2,7 +2,7 @@
  * @Author: tj
  * @Date: 2022-11-02 17:40:48
  * @LastEditors: tj
- * @LastEditTime: 2022-11-07 14:54:08
+ * @LastEditTime: 2022-11-16 09:49:52
  * @FilePath: \createApiMarkdown\gindemo\register.go
  */
 package gindemo
@@ -52,6 +52,8 @@ func register(controller interface{}) error {
 		response, subResponse := getResponse(method)
 
 		route := Route{
+			Title:       module + "-" + action,
+			Author:      "",
 			Path:        path,
 			HttpMethod:  httpMethod,
 			Method:      method,
