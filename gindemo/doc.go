@@ -2,7 +2,7 @@
  * @Author: tj
  * @Date: 2022-11-03 18:59:04
  * @LastEditors: tj
- * @LastEditTime: 2022-11-16 11:29:14
+ * @LastEditTime: 2022-11-21 17:10:53
  * @FilePath: \createApiMarkdown\gindemo\doc.go
  */
 package gindemo
@@ -37,8 +37,16 @@ func createApiMd() error {
 	return nil
 }
 
+func getHeader() map[string]string {
+	headerMap := make(map[string]string, 8)
+	headerMap["timestamp"] = ""
+	headerMap["randStr"] = "length between 10 and 16"
+
+	return headerMap
+}
+
 func getDoc() (*document.Document, error) {
-	doc := document.NewDocument("")
+	doc := document.NewDocument("", getHeader())
 
 	for _, v := range Routes {
 		item := &document.DocItem{

@@ -2,7 +2,7 @@
  * @Author: tj
  * @Date: 2022-10-26 18:07:40
  * @LastEditors: tj
- * @LastEditTime: 2022-11-16 10:49:46
+ * @LastEditTime: 2022-11-21 16:54:22
  * @FilePath: \createApiMarkdown\markdown\template.go
  */
 package markdown
@@ -10,6 +10,7 @@ package markdown
 const TplPage = `# {title}
 > 版本号：{version}<br>
 > BaseUrl: {url}<br>
+> Header: {headerList}<br>
 > ApiList: {apiList}<br>
 {body}
 `

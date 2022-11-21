@@ -2,7 +2,7 @@
  * @Author: tj
  * @Date: 2022-11-02 10:05:45
  * @LastEditors: tj
- * @LastEditTime: 2022-11-04 15:34:20
+ * @LastEditTime: 2022-11-21 16:51:40
  * @FilePath: \createApiMarkdown\document\data.go
  */
 package document
@@ -27,10 +27,11 @@ type DocItem struct {
 }
 
 type Document struct {
-	Title   string     `json:"title"`   // 文档标题
-	Version string     `json:"version"` // 版本号
-	Url     string     `json:"Url"`     // Url
-	Items   []*DocItem `json:"items"`   // 接口列表
+	Title     string            `json:"title"`     // 文档标题
+	Headermap map[string]string `json:"headerMap"` // headerData: key -> condition of key
+	Version   string            `json:"version"`   // 版本号
+	Url       string            `json:"Url"`       // Url
+	Items     []*DocItem        `json:"items"`     // 接口列表
 
 	mdKey          string
 	isNeedParseReq bool

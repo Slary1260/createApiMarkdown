@@ -2,7 +2,7 @@
  * @Author: tj
  * @Date: 2022-10-21 16:15:51
  * @LastEditors: tj
- * @LastEditTime: 2022-11-04 16:42:40
+ * @LastEditTime: 2022-11-21 16:53:53
  * @FilePath: \createApiMarkdown\document\document.go
  */
 package document
@@ -27,9 +27,10 @@ var (
 	})
 )
 
-func NewDocument(url string, options ...Option) *Document {
+func NewDocument(url string, headerMap map[string]string, options ...Option) *Document {
 	d := &Document{
 		Title:          "接口文档",
+		Headermap:      headerMap,
 		Version:        "1.0",
 		Url:            url,
 		Items:          make([]*DocItem, 0, 8),

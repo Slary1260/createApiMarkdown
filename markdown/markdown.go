@@ -2,7 +2,7 @@
  * @Author: tj
  * @Date: 2022-10-26 18:07:11
  * @LastEditors: tj
- * @LastEditTime: 2022-11-16 11:39:32
+ * @LastEditTime: 2022-11-21 17:00:11
  * @FilePath: \createApiMarkdown\markdown\markdown.go
  */
 package markdown
@@ -73,6 +73,12 @@ func (m *Markdown) renderPage(v *document.Document) (string, error) {
 	ts = strings.Replace(ts, "{title}", v.Title, 1)
 	ts = strings.Replace(ts, "{version}", v.Version, 1)
 	ts = strings.Replace(ts, "{url}", v.Url, 1)
+
+	headerStr := "\n"
+	for key, value := range v.Headermap {
+		headerStr += key + ":" + value + "\n"
+	}
+	ts = strings.Replace(ts, "{headerList}", headerStr, 1)
 
 	apiList := ""
 	body := ""
