@@ -11,7 +11,6 @@ import (
 func normal() {
 	// start log
 	logger.DefaultLogrusLogger()
-	logrus.SetLevel(logrus.InfoLevel)
 
 	headerMap := make(map[string]string, 8)
 	headerMap["timestamp"] = ""

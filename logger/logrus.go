@@ -2,8 +2,8 @@
  * @Author: tj
  * @Date: 2022-10-10 09:28:09
  * @LastEditors: tj
- * @LastEditTime: 2022-11-02 12:18:00
- * @FilePath: \github.com/Slary1260/createapimarkdown\logger\logrus.go
+ * @LastEditTime: 2022-11-30 13:55:51
+ * @FilePath: \createApiMarkdown\logger\logrus.go
  */
 package logger
 
@@ -27,7 +27,7 @@ var (
 
 // DefaultLogrusLogger DefaultLogrusLogger
 func DefaultLogrusLogger() {
-	NewLogrusLogger("", DefaultLogFilePath())
+	NewLogrusLogger("", DefaultLogFilePath(), logrus.InfoLevel)
 }
 
 func GetOutWriter() io.Writer {
@@ -54,9 +54,10 @@ func cresteWriter(dir, fileName string) {
 }
 
 // NewLogrusLogger NewLogrusLogger
-func NewLogrusLogger(dir, fileName string) {
+func NewLogrusLogger(dir, fileName string, level logrus.Level) {
 	cresteWriter(dir, fileName)
 	logrus.SetOutput(out)
+	logrus.SetLevel(level)
 }
 
 // DefaultLogFilePath DefaultLogFilePath
