@@ -2,7 +2,7 @@
  * @Author: tj
  * @Date: 2022-11-03 18:59:04
  * @LastEditors: tj
- * @LastEditTime: 2022-11-21 17:10:53
+ * @LastEditTime: 2022-12-02 10:41:46
  * @FilePath: \createApiMarkdown\gindemo\doc.go
  */
 package gindemo
@@ -20,14 +20,14 @@ const (
 	apiDocHtml string = "doc.html"
 )
 
-func createApiMd() error {
+func createApiMd(isMd2Html bool) error {
 	doc, err := getDoc()
 	if err != nil {
 		log.Errorln("createApiMd getDoc error:", err)
 		return err
 	}
 
-	md := markdown.New(doc, markdown.WithMd2Html(true))
+	md := markdown.New(doc, markdown.WithMd2Html(isMd2Html))
 	err = md.Generate(apiDocFile)
 	if err != nil {
 		log.Errorln("createApiMd Generate error:", err)

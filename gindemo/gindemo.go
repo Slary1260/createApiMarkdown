@@ -2,7 +2,7 @@
  * @Author: tj
  * @Date: 2022-11-07 14:10:26
  * @LastEditors: tj
- * @LastEditTime: 2022-11-07 14:20:12
+ * @LastEditTime: 2022-12-02 10:41:01
  * @FilePath: \createApiMarkdown\gindemo\gindemo.go
  */
 package gindemo
@@ -20,6 +20,7 @@ var (
 
 func GinDemo() {
 	r := gin.Default()
-	initRouter(r)
+	isMd2Html := true
+	initRouter(r, isMd2Html)
 	r.Run()
 }

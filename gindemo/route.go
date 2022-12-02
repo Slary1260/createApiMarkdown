@@ -2,7 +2,7 @@
  * @Author: tj
  * @Date: 2022-11-03 10:30:39
  * @LastEditors: tj
- * @LastEditTime: 2022-11-16 09:49:32
+ * @LastEditTime: 2022-12-02 10:41:15
  * @FilePath: \createApiMarkdown\gindemo\route.go
  */
 package gindemo
@@ -32,7 +32,7 @@ type Route struct {
 	SubResponse interface{}
 }
 
-func initRouter(e *gin.Engine) error {
+func initRouter(e *gin.Engine, isMd2Html bool) error {
 	group := e.Group("api")
 
 	for _, v := range Routes {
@@ -53,13 +53,15 @@ func initRouter(e *gin.Engine) error {
 		}
 	}
 
-	err := createApiMd()
+	err := createApiMd(isMd2Html)
 	if err != nil {
 		log.Errorln("initRouter createApiMd error:", err)
 		return err
 	}
 
-	e.LoadHTMLGlob("./doc.html")
+	if isMd2Html {
+		e.LoadHTMLGlob("./doc.html")
+	}
 
 	return nil
 }
