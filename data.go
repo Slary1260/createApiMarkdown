@@ -2,8 +2,8 @@
  * @Author: tj
  * @Date: 2022-11-01 19:21:07
  * @LastEditors: tj
- * @LastEditTime: 2022-11-02 12:17:31
- * @FilePath: \github.com/Slary1260/createapimarkdown\data.go
+ * @LastEditTime: 2022-12-05 10:17:20
+ * @FilePath: \createApiMarkdown\data.go
  */
 package main
 

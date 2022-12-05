@@ -2,14 +2,7 @@
  * @Author: tj
  * @Date: 2022-11-16 10:12:44
  * @LastEditors: tj
- * @LastEditTime: 2022-11-21 17:09:08
- * @FilePath: \createApiMarkdown\main.go
- */
-/*
- * @Author: tj
- * @Date: 2022-11-01 15:03:53
- * @LastEditors: tj
- * @LastEditTime: 2022-11-21 16:53:08
+ * @LastEditTime: 2022-12-05 10:17:29
  * @FilePath: \createApiMarkdown\main.go
  */
 package main
