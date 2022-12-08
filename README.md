@@ -1,10 +1,3 @@
-<!--
- * @Author: tj
- * @Date: 2022-11-02 12:02:53
- * @LastEditors: tj
- * @LastEditTime: 2022-11-29 14:19:00
- * @FilePath: \createApiMarkdown\README.md
--->
 # API接口markdown文档生成工具
 通过api的请求对象、返回对象，自动生成对应的API接口文档。
 使得开发人员接口开发完成时，或接口维护后，无需再更新api文档。
