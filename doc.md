@@ -1,6 +1,10 @@
 # 接口文档
 > 版本号：1.0<br>
 > BaseUrl: <br>
+> Header: 
+timestamp:
+randStr:length between 10 and 16
+<br>
 > ApiList: 
 [1.activity-add](#1.activity-add)&emsp;[2.activity-close](#2.activity-close)&emsp;[3.activity-info](#3.activity-info)&emsp;[4.activity-list](#4.activity-list)&emsp;
 [5.activity-update](#5.activity-update)&emsp;[6.api-gethtml](#6.api-gethtml)<br>
@@ -105,7 +109,7 @@
 |字段      |字段类型       |必填     |字段说明    |
 |:--:|:--:|:--:|:--:|
 |details   |slice[struct]        |是      |活动详情列表 [req-details](#req-4.1.details)    |
-|page   |int        |是      |页码：从1开始    |
+|page   |int        |是      |页码    |
 |status   |int        |是      |活动状态: -1:表示查全部;1-准备;2-关闭,oneof=-1 1 2    |
 
 <a id="req-4.1.details"></a> 

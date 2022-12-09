@@ -2,7 +2,7 @@
  * @Author: tj
  * @Date: 2022-11-07 14:08:27
  * @LastEditors: tj
- * @LastEditTime: 2022-11-16 11:03:24
+ * @LastEditTime: 2022-12-09 15:06:23
  * @FilePath: \createApiMarkdown\gindemo\data.go
  */
 package gindemo
@@ -15,7 +15,7 @@ type Result struct {
 
 type ActivityListRequest struct {
 	Details []ActivityListDetail `json:"details" validate:"required,活动详情列表"`
-	Page    int                  `json:"page" validate:"required,页码：从1开始"`
+	Page    int                  `json:"page" validate:"required,页码"`
 	Status  int                  `json:"status" validate:"required,活动状态: -1:表示查全部;1-准备;2-关闭,oneof=-1 1 2"`
 }
 

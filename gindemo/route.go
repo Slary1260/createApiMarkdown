@@ -2,7 +2,7 @@
  * @Author: tj
  * @Date: 2022-11-03 10:30:39
  * @LastEditors: tj
- * @LastEditTime: 2022-12-02 10:41:15
+ * @LastEditTime: 2022-12-09 15:08:23
  * @FilePath: \createApiMarkdown\gindemo\route.go
  */
 package gindemo
@@ -60,7 +60,7 @@ func initRouter(e *gin.Engine, isMd2Html bool) error {
 	}
 
 	if isMd2Html {
-		e.LoadHTMLGlob("./doc.html")
+		e.LoadHTMLGlob(apiDocHtml)
 	}
 
 	return nil
