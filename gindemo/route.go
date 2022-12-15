@@ -2,7 +2,7 @@
  * @Author: tj
  * @Date: 2022-11-03 10:30:39
  * @LastEditors: tj
- * @LastEditTime: 2022-12-09 15:08:23
+ * @LastEditTime: 2022-12-15 09:50:42
  * @FilePath: \createApiMarkdown\gindemo\route.go
  */
 package gindemo
@@ -17,6 +17,7 @@ import (
 )
 
 var (
+	// 所有路由详情
 	Routes []Route
 )
 

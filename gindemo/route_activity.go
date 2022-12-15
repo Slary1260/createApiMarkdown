@@ -2,7 +2,7 @@
  * @Author: tj
  * @Date: 2022-11-02 17:43:17
  * @LastEditors: tj
- * @LastEditTime: 2022-11-16 11:03:45
+ * @LastEditTime: 2022-12-15 09:49:54
  * @FilePath: \createApiMarkdown\gindemo\route_activity.go
  */
 package gindemo
@@ -12,6 +12,7 @@ import (
 )
 
 func init() {
+	// 注册路由
 	register(NewActivity())
 }
 

@@ -2,7 +2,7 @@
  * @Author: tj
  * @Date: 2022-11-02 17:40:48
  * @LastEditors: tj
- * @LastEditTime: 2022-11-16 11:10:06
+ * @LastEditTime: 2022-12-15 09:50:22
  * @FilePath: \createApiMarkdown\gindemo\register.go
  */
 package gindemo
@@ -24,6 +24,7 @@ var (
 	HasLogin bool = false
 )
 
+// 注册路由
 func register(controller interface{}) error {
 	ctrlName := reflect.TypeOf(controller).String()
 
