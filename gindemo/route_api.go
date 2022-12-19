@@ -2,7 +2,7 @@
  * @Author: tj
  * @Date: 2022-11-02 16:47:20
  * @LastEditors: tj
- * @LastEditTime: 2022-11-16 09:49:09
+ * @LastEditTime: 2022-12-19 11:03:51
  * @FilePath: \createApiMarkdown\gindemo\route_api.go
  */
 package gindemo
@@ -18,6 +18,7 @@ func init() {
 }
 
 type Api struct {
+	// API 文档
 }
 
 func NewApi() *Api {
